@@ -1,0 +1,17 @@
+chamadas de sistema de diretorios
+sys_chdir	-	change working directory
+sys_mkdir	-	create a directory
+sys_rmdir	-	remove a directory
+sys_chroot	-	change root directory
+old_readdir	-	read directory entry
+sys_fchdir	-	change working directory
+sys_getdents	-	read directory entries
+sys_getcwd	-	Get current working directory
+
+chamadas de sistemas de arquivos
+sys_read	-	read from a file descriptor
+sys_write	-	write to a file descriptor
+sys_open	-	open a file or device
+sys_close	-	close a file descriptor
+sys_creat	-	create a file or device ("man 2 open" for information)
+
