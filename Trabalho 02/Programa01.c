@@ -16,7 +16,7 @@ int main(){
 	printf("\nEntre com um texto qualquer:");
 	scanf("%s",buff);
 
-	fgets(buff,100,stdin);		//Pega o texto digitado pelo usuario
+	//fgets(buff,100,stdin);
 	fd = open(fn,O_CREAT|O_WRONLY);	//apre o arquivo, se não existir, cria, com o nome definido pelo usuario
 	n = write(fd,buff,strlen(buff));//escreve no arquivo o que tem na variavel buff
 	close(fd);			//fecha o arquivo
