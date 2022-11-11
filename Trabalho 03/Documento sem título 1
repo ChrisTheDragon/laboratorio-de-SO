@@ -1,0 +1,11 @@
+a) A CPU separa uma fatia de tempo para execução de processos. Caso o processo necessite de um tempo maior que essa fatia de tempo, o processo é retirado da CPU e colocado em que estado?
+	R=Estdo de Espera
+	
+b) Em relação a fatia de tempo, qual o comportamento do programa anterior?
+	R=Espera o tempo de processamento dos outros processos da vez até chegar o seu de novo
+
+
+c) Como fazer para que o programa anterior tenha um comportamento diferente do citado acima?
+	R=Dar uma prioridade maior para o processo para que ele tenha sua vez antes
+
+d) Verifique o aumento de iterações que o programa deve fazer para que ele ocupe mais de uma vez a CPU.
