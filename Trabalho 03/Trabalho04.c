@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
 
 float fib(int n)
 {
@@ -9,7 +11,7 @@ float fib(int n)
         soma = fib1 + fib2;
         fib1 = fib2;
         fib2 = soma;
-        printf("%d - fib = %f\n", i, fib2);
+        printf("%d - fib = %.0f\n", i, fib2);
     }                                        
     return fib2;                             
 }
@@ -19,7 +21,7 @@ float fatorial(int num)
 	float fat;
 	for(fat = 1; num > 1; num = num - 1){
 		fat = fat * num;
-		printf("fat = %f\n", fat);
+		printf("fat = %.0f\n", fat);
  	}
 	return fat;
 }
@@ -39,6 +41,15 @@ void hanoi(int n, char a, char b, char c)
      
 int main(void)
 {
+    pid_t pid;
+
+    pid = fork();
+
+    if (pid == 0){
+        fatorial(19);
+    } else {
+        hanoi(6, 'A', 'B', 'C');
+    }
     
     return 0;
 }
