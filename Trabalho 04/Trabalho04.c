@@ -2,28 +2,33 @@
 #include <unistd.h>
 #include <sys/types.h>
 
-float fib(int n)
+void fib(int num)
 {
-    float fib1 = 1, fib2 = 1, soma;
+    float fib1 = 0, fib2 = 1, soma;
     int i;
-    for (i = 3; i <= n; i = i + 1)
+    printf("fib[1] = 0\n");
+    printf("fib[2] = 1\n");
+    for (i = 3; i <= num; i = i + 1)
     {
         soma = fib1 + fib2;
         fib1 = fib2;
         fib2 = soma;
-        printf("%d - fib = %.0f\n", i, fib2);
-    }                                        
-    return fib2;                             
+        printf("fib[%d] = %.0f\n", i, fib2);
+    }
+    printf("\n*** Processo FILHO finalizado ***\n");
+    //return fib2;
 }
 
-float fatorial(int num)
+void fat(int num)
 {
 	float fat;
+    int cont = num;
 	for(fat = 1; num > 1; num = num - 1){
 		fat = fat * num;
-		printf("fat = %.0f\n", fat);
+		printf("%d! = %.0f\n", cont, fat);
  	}
-	return fat;
+    printf("\n*** Processo PAI finalizado ***\n");
+	//return fat;
 }
 
 void hanoi(int n, char a, char b, char c)
@@ -41,14 +46,23 @@ void hanoi(int n, char a, char b, char c)
      
 int main(void)
 {
-    pid_t pid;
+    pid_t pid_filho, pid_neto;
 
-    pid = fork();
+    pid_filho = fork();
 
-    if (pid == 0){
-        fatorial(19);
+    if (pid_filho == 0)
+    {
+        pid_neto = fork();
+
+        if (pid_neto == 0)
+        {
+            hanoi(6, 'A', 'B', 'C');
+            printf("\n*** Processo NETO finalizado ***\n");
+        } else {
+            fib(100);
+        }
     } else {
-        hanoi(6, 'A', 'B', 'C');
+        fat(19);
     }
     
     return 0;
