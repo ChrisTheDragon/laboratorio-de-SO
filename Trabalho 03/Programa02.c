@@ -1,35 +1,22 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <unistd.h>
+#include <stdio.h>	//}
+#include <stdlib.h>	//}
+#include <dirent.h>	//}Bibiolteca de Manipulaçao de Diretorios
 
-#define MAX_COUNT 200
+int main(){
+	char d[10];
+	DIR *p;			//Ponteiro para um diretorio
+	struct dirent *d1;	//Ponteiro para uma estrutura de diretorios
 
-void ChildProcess(void);
-void ParentProcess(void);
+	printf("Entre com um nome de um diretório:\n");
+	scanf("%s",d);
+	p = opendir(d);		//abre o diretorio digitado pelo usuario e guarda no ponteiro
 
-void main(void) {
-	pid_t pid;
-	pid = fork();
+	if( p==NULL ){		//se o diretorio não existe retorna um erro
+		perror("Diretório não encontrado");
+		exit(-1);
+	}
 
-	if (pid == 0)
-		ChildProcess();
-	else
-		ParentProcess();
-	exit(0);
+	while( d1 = readdir(p) )	//varre todos os diretorios de dentro do diretorio digitado pelo usuario
+	printf("%s\n",d1->d_name);	//imprime o nome dos diretorios
 }
 
-void ChildProcess(void) {
-	int i;
-	for (i = 1; i <= MAX_COUNT; i++)
-		printf(" Processo FILHO, valor = %d\n", i);
-		printf(" *** Processo FILHO finalizado ***\n");
-}
-
-void ParentProcess(void) {
-	int i;
-	for (i = 1; i <= MAX_COUNT; i++)
-		printf("Processo PAI, value = %d\n", i);
-		printf("*** Processo PAI finalizado ***\n");
-	exit(0);
-}
